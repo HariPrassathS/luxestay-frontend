@@ -111,6 +111,14 @@
         initMap();
         bindEvents();
         
+        // CRITICAL: Force Leaflet to recalculate size after DOM is ready
+        // This fixes mobile layout issues where container size isn't known at init
+        setTimeout(() => {
+            if (state.map) {
+                state.map.invalidateSize();
+            }
+        }, 100);
+        
         // Load initial hotels for India region
         showLoading();
         
@@ -151,6 +159,13 @@
 
         // Position zoom control
         state.map.zoomControl.setPosition('topright');
+        
+        // Handle window resize for responsive layout
+        window.addEventListener('resize', debounce(() => {
+            if (state.map) {
+                state.map.invalidateSize();
+            }
+        }, 200));
     }
 
     // ==================== EVENT BINDING ====================
