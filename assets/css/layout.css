@@ -194,6 +194,32 @@
     color: var(--color-gold);
 }
 
+/* Mobile menu fix - dark text on white background */
+@media (max-width: 767px) {
+    .navbar-menu {
+        background: var(--color-white);
+        border-top: 1px solid var(--color-gray-200);
+    }
+    
+    .navbar-dark .nav-link,
+    .navbar .nav-link {
+        color: var(--color-gray-800) !important;
+        font-weight: var(--font-semibold);
+    }
+    
+    .navbar-dark .nav-link:hover,
+    .navbar-dark .nav-link.active,
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+        color: var(--color-gold) !important;
+    }
+    
+    .navbar-dark .navbar-brand,
+    .navbar.scrolled .navbar-brand {
+        color: var(--color-white);
+    }
+}
+
 /* User Menu */
 .user-menu {
     position: relative;
