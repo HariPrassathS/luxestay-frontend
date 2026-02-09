@@ -455,6 +455,11 @@ const API = {
         
         seedDestinations() {
             return API.post('/admin/destinations/seed', {});
+        },
+        
+        // Hotel Seeding
+        seedCityHotels() {
+            return API.post('/admin/hotels/seed-cities', {});
         }
     },
     

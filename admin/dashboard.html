@@ -105,6 +105,10 @@
                     <p class="content-subtitle">Welcome back! Here's what's happening today.</p>
                 </div>
                 <div class="content-actions">
+                    <button class="btn btn-secondary" onclick="seedMissingHotels()" id="seedHotelsBtn">
+                        <i class="fas fa-database"></i>
+                        Seed Missing Hotels
+                    </button>
                     <button class="btn btn-primary" onclick="location.href='hotels.html'">
                         <i class="fas fa-plus"></i>
                         Add New Hotel
@@ -498,6 +502,35 @@
                 bar.style.height = percentage + '%';
                 bar.title = `₹${dayRevenue[index].toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
             });
+        }
+        
+        /**
+         * Seed hotels for missing cities (Las Vegas, Los Angeles, London, Barcelona)
+         */
+        async function seedMissingHotels() {
+            const btn = document.getElementById('seedHotelsBtn');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Seeding...';
+                btn.disabled = true;
+                
+                const response = await API.admin.seedCityHotels();
+                
+                if (response.success) {
+                    UI.toast(response.message || 'Hotels seeded successfully!', 'success');
+                    // Reload dashboard data
+                    setTimeout(() => location.reload(), 1500);
+                } else {
+                    throw new Error(response.message || 'Failed to seed hotels');
+                }
+            } catch (error) {
+                console.error('Error seeding hotels:', error);
+                UI.toast(error.message || 'Failed to seed hotels', 'error');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         }
     </script>
 </body>
