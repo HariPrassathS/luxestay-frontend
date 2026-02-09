@@ -118,24 +118,40 @@ const UI = {
     },
     
     /**
-     * Get hotel image URL
+     * Get hotel image URL with cache busting
      */
     getHotelImage(hotel) {
+        let imageUrl;
         if (hotel.images && hotel.images.length > 0) {
             const primaryImage = hotel.images.find(img => img.isPrimary);
-            return primaryImage ? primaryImage.imageUrl : hotel.images[0].imageUrl;
+            imageUrl = primaryImage ? primaryImage.imageUrl : hotel.images[0].imageUrl;
+        } else {
+            imageUrl = CONFIG.HOTEL_IMAGES[hotel.name] || CONFIG.PLACEHOLDER_HOTEL;
         }
-        return CONFIG.HOTEL_IMAGES[hotel.name] || CONFIG.PLACEHOLDER_HOTEL;
+        // Add cache-busting parameter based on updatedAt timestamp
+        if (imageUrl && hotel.updatedAt) {
+            const cacheBuster = new Date(hotel.updatedAt).getTime();
+            imageUrl += (imageUrl.includes('?') ? '&' : '?') + 'v=' + cacheBuster;
+        }
+        return imageUrl;
     },
     
     /**
-     * Get room image URL
+     * Get room image URL with cache busting
      */
     getRoomImage(room) {
+        let imageUrl;
         if (room.imageUrl) {
-            return room.imageUrl;
+            imageUrl = room.imageUrl;
+        } else {
+            imageUrl = CONFIG.ROOM_IMAGES[room.roomType] || CONFIG.PLACEHOLDER_ROOM;
         }
-        return CONFIG.ROOM_IMAGES[room.roomType] || CONFIG.PLACEHOLDER_ROOM;
+        // Add cache-busting parameter
+        if (imageUrl && room.updatedAt) {
+            const cacheBuster = new Date(room.updatedAt).getTime();
+            imageUrl += (imageUrl.includes('?') ? '&' : '?') + 'v=' + cacheBuster;
+        }
+        return imageUrl;
     },
     
     /**

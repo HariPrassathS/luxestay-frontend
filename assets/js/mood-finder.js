@@ -365,10 +365,17 @@ const MoodFinder = {
         // Get top 3 match reasons
         const topReasons = (hotel.matchReasons || []).slice(0, 3);
         
+        // Add cache-busting parameter to image URL
+        let imageUrl = hotel.heroImageUrl || CONFIG.PLACEHOLDER_HOTEL;
+        if (hotel.updatedAt) {
+            const cacheBuster = new Date(hotel.updatedAt).getTime();
+            imageUrl += (imageUrl.includes('?') ? '&' : '?') + 'v=' + cacheBuster;
+        }
+        
         return `
             <div class="mood-hotel-card" data-hotel-id="${hotel.hotelId}">
                 <div class="mood-hotel-image">
-                    <img src="${hotel.heroImageUrl || CONFIG.PLACEHOLDER_HOTEL}" 
+                    <img src="${imageUrl}" 
                          alt="${hotel.hotelName}"
                          onerror="this.src='${CONFIG.PLACEHOLDER_HOTEL}'">
                     <div class="mood-match-badge ${matchLevelClass}" style="--mood-color: ${config.color}">

@@ -27,7 +27,8 @@ const API = {
         try {
             const response = await fetch(url, {
                 ...options,
-                headers
+                headers,
+                cache: 'no-store' // Disable browser caching for fresh data
             });
             
             // Handle no content response

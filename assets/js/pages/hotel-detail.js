@@ -107,6 +107,13 @@ function renderHotelDetails(hotel) {
     const amenities = hotel.amenities || [];
     const images = hotel.images || [];
     
+    // Add cache busting to images
+    const cacheBuster = hotel.updatedAt ? new Date(hotel.updatedAt).getTime() : Date.now();
+    const addCacheBuster = (url) => {
+        if (!url) return url;
+        return url + (url.includes('?') ? '&' : '?') + 'v=' + cacheBuster;
+    };
+    
     // Build gallery HTML if images exist
     const galleryHtml = images.length > 0 ? `
         <div class="hotel-gallery-section">
@@ -117,7 +124,7 @@ function renderHotelDetails(hotel) {
                          role="button"
                          tabindex="0"
                          aria-label="View image ${i + 1}">
-                        <img src="${img.imageUrl || img}" alt="${img.caption || hotel.name + ' - Image ' + (i + 1)}" loading="lazy">
+                        <img src="${addCacheBuster(img.imageUrl || img)}" alt="${img.caption || hotel.name + ' - Image ' + (i + 1)}" loading="lazy">
                         ${i === 4 && images.length > 5 ? `
                             <div class="hotel-gallery-more">+${images.length - 5} more</div>
                         ` : ''}

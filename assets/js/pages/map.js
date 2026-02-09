@@ -734,7 +734,12 @@
     }
 
     function createPopupContent(hotel) {
-        const imageUrl = hotel.heroImageUrl || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400';
+        let imageUrl = hotel.heroImageUrl || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400';
+        // Add cache-busting parameter
+        if (hotel.updatedAt) {
+            const cacheBuster = new Date(hotel.updatedAt).getTime();
+            imageUrl += (imageUrl.includes('?') ? '&' : '?') + 'v=' + cacheBuster;
+        }
         const stars = '★'.repeat(hotel.starRating) + '☆'.repeat(5 - hotel.starRating);
         const price = hotel.minPrice ? `₹${hotel.minPrice.toLocaleString('en-IN')}` : 'Check availability';
 
