@@ -433,3 +433,70 @@ main {
 .rewards-link span {
     font-size: 0.9375rem;
 }
+
+/* =====================================================
+   PREMIUM DASHBOARD
+   ===================================================== */
+
+.premium-dashboard {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.premium-dashboard-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.premium-dashboard-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.premium-dashboard-header h3 i {
+    color: #8B5CF6;
+}
+
+.premium-dashboard-header p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.premium-section {
+    margin-bottom: var(--space-4);
+}
+
+.premium-section:last-child {
+    margin-bottom: 0;
+}
+
+.premium-section:empty {
+    display: none;
+}
+
+/* Premium section loading state */
+.premium-section .loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e5e7eb;
+    border-top-color: #8B5CF6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

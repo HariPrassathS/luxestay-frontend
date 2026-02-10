@@ -21,6 +21,16 @@ function initProfilePage() {
     // Setup event listeners
     setupEventListeners();
     
+    // Initialize Stay Countdown (upcoming trips)
+    if (window.StayCountdown) {
+        window.StayCountdown.initForUser('stayCountdownContainer');
+    }
+    
+    // Initialize Guest Match (personalized recommendations)
+    if (window.GuestMatch) {
+        window.GuestMatch.initOnHotelsPage('guestMatchContainer');
+    }
+    
     // Initialize Memory Lane
     if (window.MemoryLane) {
         window.MemoryLane.initOnProfilePage('memoryLaneContainer');

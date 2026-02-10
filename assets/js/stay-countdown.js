@@ -323,17 +323,24 @@ const StayCountdown = (function() {
         if (!container) return;
         
         if (!countdowns || countdowns.length === 0) {
-            container.innerHTML = `
-                <div class="countdown-empty">
-                    <span class="empty-icon">🏨</span>
-                    <p>No upcoming stays</p>
-                    <a href="hotels.html" class="btn btn-primary">Browse Hotels</a>
-                </div>
-            `;
+            container.innerHTML = '';
             return;
         }
         
-        container.innerHTML = countdowns.map(c => renderCompactCard(c)).join('');
+        container.innerHTML = `
+            <div class="stay-countdown-section">
+                <div class="countdown-section-header">
+                    <span class="section-icon">⏰</span>
+                    <div>
+                        <h4>Upcoming Adventures</h4>
+                        <p>Your journey begins soon!</p>
+                    </div>
+                </div>
+                <div class="countdown-list">
+                    ${countdowns.map(c => renderCompactCard(c)).join('')}
+                </div>
+            </div>
+        `;
     }
     
     /**

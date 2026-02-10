@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="assets/css/premium-enhancements.css">
     <link rel="stylesheet" href="assets/css/components/memory-lane.css">
     <link rel="stylesheet" href="assets/css/components/vip-concierge.css">
+    <link rel="stylesheet" href="assets/css/components/stay-countdown.css">
+    <link rel="stylesheet" href="assets/css/components/guest-match.css">
     <link rel="stylesheet" href="assets/css/components/chatbot.css">
     <link rel="stylesheet" href="assets/css/components/voice-assistant.css">
 </head>
@@ -327,11 +329,25 @@
                         </form>
                     </div>
 
-                    <!-- Memory Lane Section -->
-                    <div id="memoryLaneContainer"></div>
+                    <!-- Premium Features Dashboard -->
+                    <div class="premium-dashboard">
+                        <div class="premium-dashboard-header">
+                            <h3><i class="fas fa-gem"></i> Premium Dashboard</h3>
+                            <p>Your personalized travel experience</p>
+                        </div>
 
-                    <!-- VIP Concierge Section -->
-                    <div id="vipConciergeContainer"></div>
+                        <!-- Stay Countdown Section -->
+                        <div id="stayCountdownContainer" class="premium-section"></div>
+
+                        <!-- Guest Match Recommendations -->
+                        <div id="guestMatchContainer" class="premium-section"></div>
+
+                        <!-- Memory Lane Section -->
+                        <div id="memoryLaneContainer" class="premium-section"></div>
+
+                        <!-- VIP Concierge Section -->
+                        <div id="vipConciergeContainer" class="premium-section"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -390,6 +406,8 @@
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/api.js"></script>
     <script src="assets/js/ui.js"></script>
+    <script src="assets/js/stay-countdown.js"></script>
+    <script src="assets/js/guest-match.js"></script>
     <script src="assets/js/memory-lane.js"></script>
     <script src="assets/js/vip-concierge.js"></script>
     <script src="assets/js/pages/profile.js"></script>
