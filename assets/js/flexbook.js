@@ -33,7 +33,7 @@ const FlexBook = {
             const policy = await this.fetchRoomPolicy(roomId);
             container.innerHTML = this.renderPolicyBadge(policy);
         } catch (error) {
-            console.error('Error loading policy badge:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     },
@@ -53,7 +53,7 @@ const FlexBook = {
             container.innerHTML = this.renderPolicyCard(policy);
             this.initInteractions(container);
         } catch (error) {
-            console.error('Error loading policy card:', error);
+            // Error logging removed for production
             container.innerHTML = this.renderError();
         }
     },
@@ -72,7 +72,7 @@ const FlexBook = {
             container.innerHTML = this.renderBookingPolicyCard(policy);
             this.initInteractions(container);
         } catch (error) {
-            console.error('Error loading booking policy:', error);
+            // Error logging removed for production
             container.innerHTML = this.renderError();
         }
     },

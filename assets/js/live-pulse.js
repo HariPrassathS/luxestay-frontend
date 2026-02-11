@@ -74,7 +74,7 @@ const LivePulse = {
                 container.innerHTML = '';
             }
         } catch (error) {
-            console.error('Live Pulse badge error:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     },
@@ -101,7 +101,7 @@ const LivePulse = {
                 container.innerHTML = this.renderEmptyState();
             }
         } catch (error) {
-            console.error('Live Pulse card error:', error);
+            // Error logging removed for production
             container.innerHTML = this.renderError();
         }
     },

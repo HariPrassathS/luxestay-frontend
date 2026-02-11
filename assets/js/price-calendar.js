@@ -46,7 +46,7 @@ window.PriceCalendar = (function() {
     function init(containerSelector, hotelId, options = {}) {
         elements.container = document.querySelector(containerSelector);
         if (!elements.container) {
-            console.warn('PriceCalendar: Container not found');
+            // Warning logging removed for production
             return;
         }
 
@@ -70,7 +70,7 @@ window.PriceCalendar = (function() {
             }
         }, 250));
 
-        console.log('PriceCalendar initialized for hotel:', hotelId);
+        // Console logging removed for production
     }
 
     function determineViewMode() {
@@ -214,7 +214,7 @@ window.PriceCalendar = (function() {
             render();
             updateSummary();
         } catch (error) {
-            console.error('PriceCalendar: Error fetching prices', error);
+            // Error logging removed for production
             state.isLoading = false;
             showError();
         }

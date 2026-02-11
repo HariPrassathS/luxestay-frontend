@@ -100,12 +100,12 @@ const PriceGenius = (function() {
         try {
             const response = await fetch(`${API_BASE}/api/price-genius/hotel/${hotelId}/room/${roomId}`);
             if (!response.ok) {
-                console.warn('Could not fetch price insights for room:', roomId);
+                // Warning logging removed for production
                 return null;
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching room price insights:', error);
+            // Error logging removed for production
             return null;
         }
     }
@@ -117,12 +117,12 @@ const PriceGenius = (function() {
         try {
             const response = await fetch(`${API_BASE}/api/price-genius/hotel/${hotelId}`);
             if (!response.ok) {
-                console.warn('Could not fetch hotel price insights:', hotelId);
+                // Warning logging removed for production
                 return null;
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching hotel price insights:', error);
+            // Error logging removed for production
             return null;
         }
     }

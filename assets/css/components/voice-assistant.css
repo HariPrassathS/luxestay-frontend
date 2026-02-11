@@ -848,25 +848,36 @@
 
 /* ==================== RESPONSIVE ==================== */
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .voice-assistant-btn {
-        bottom: 16px;
-        left: 16px;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9998 !important;
     }
     
     .voice-btn {
-        width: 50px;
-        height: 50px;
+        width: 54px;
+        height: 54px;
+        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.1);
     }
     
     .voice-btn i {
-        font-size: 18px;
+        font-size: 20px;
+    }
+    
+    /* Ensure voice assistant is always visible on mobile */
+    .voice-assistant-btn {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .voice-modal-content {
         width: 95%;
-        max-height: 90vh;
+        max-height: 85vh;
         border-radius: 20px;
+        margin: var(--space-4);
     }
     
     .voice-modal-body {
@@ -878,8 +889,19 @@
     }
     
     .suggestion-chip {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 8px 12px;
+        font-size: 13px;
+        margin: 4px;
+    }
+    
+    .voice-text-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Ensure modal is fully visible */
+    .voice-modal.active {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 

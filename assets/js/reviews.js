@@ -29,7 +29,7 @@ const Reviews = {
             this.initReviewAnimations(container);
             
         } catch (error) {
-            console.error('Error loading reviews:', error);
+            // Error logging removed for production
             container.innerHTML = this.renderReviewsEmpty('Unable to load reviews. Please try again later.');
         }
     },
@@ -416,7 +416,7 @@ const Reviews = {
             const response = await API.reviews.canReview(bookingId);
             return response.data?.canReview === true;
         } catch (error) {
-            console.error('Error checking review eligibility:', error);
+            // Error logging removed for production
             return false;
         }
     },

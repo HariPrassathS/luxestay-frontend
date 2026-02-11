@@ -834,15 +834,29 @@
 }
 
 /* Mobile Optimizations */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .chatbot-container {
         bottom: var(--space-4);
         right: var(--space-4);
+        z-index: 9999 !important;
     }
     
     .chatbot-toggle {
-        width: 54px;
-        height: 54px;
+        width: 56px;
+        height: 56px;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .chatbot-toggle i {
+        font-size: 22px;
+    }
+    
+    /* Ensure chatbot is always visible on mobile */
+    .chatbot-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .chatbot-window {
@@ -851,8 +865,23 @@
         right: 0;
         bottom: 70px;
         height: calc(100vh - 150px);
-        max-height: none;
+        max-height: 85vh;
         border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        left: var(--space-4);
+        margin: 0;
+    }
+    
+    .chatbot-window.active {
+        transform: translateY(0) scale(1) !important;
+    }
+    
+    .chatbot-input {
+        padding: var(--space-3);
+    }
+    
+    .chatbot-input-field {
+        padding: var(--space-3);
+        font-size: 16px; /* Prevent zoom on iOS */
     }
     
     .chat-hotel-card {

@@ -43,7 +43,7 @@ const SmartAlerts = {
         // Start polling for new alerts
         this.startPolling();
         
-        console.log('Smart Alerts initialized');
+        // Console logging removed for production
     },
     
     /**
@@ -157,7 +157,7 @@ const SmartAlerts = {
                 this.updateUI();
             }
         } catch (error) {
-            console.error('Failed to load alerts:', error);
+            // Error logging removed for production
         }
     },
     
@@ -406,7 +406,7 @@ const SmartAlerts = {
                 return response.data;
             }
         } catch (error) {
-            console.error('Failed to check availability alerts:', error);
+            // Error logging removed for production
         }
         return [];
     },
@@ -422,7 +422,7 @@ const SmartAlerts = {
                 return response.data.alert;
             }
         } catch (error) {
-            console.error('Failed to check price drop:', error);
+            // Error logging removed for production
         }
         return null;
     },

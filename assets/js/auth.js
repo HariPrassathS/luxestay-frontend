@@ -140,7 +140,7 @@ const Auth = {
                 return response.data;
             }
         } catch (error) {
-            console.error('Failed to refresh user:', error);
+            // Error logging removed for production
             this.logout();
         }
         return null;

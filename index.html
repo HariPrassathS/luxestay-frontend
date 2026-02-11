@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="assets/css/components/chatbot.css">
     <link rel="stylesheet" href="assets/css/components/voice-assistant.css">
     <link rel="stylesheet" href="assets/css/components/smart-alerts.css">
+    <link rel="stylesheet" href="assets/css/components/mobile-enhancements.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -290,5 +291,46 @@
     <script src="assets/js/chatbot-api.js?v=2"></script>
     <script src="assets/js/chatbot-ui.js?v=3"></script>
     <script src="assets/js/voice-assistant.js?v=2"></script>
+    
+    <!-- Mobile UI Enhancement Script -->
+    <script>
+        // Enhanced mobile initialization
+        function ensureMobileUI() {
+            // Force chatbot initialization if missing
+            if (!document.getElementById('chatbot')) {
+                // Chatbot missing - reinitializing
+                if (window.luxeStayChatbot || typeof LuxeStayChatbot !== 'undefined') {
+                    try {
+                        if (!window.luxeStayChatbot) {
+                            window.luxeStayChatbot = new LuxeStayChatbot();
+                        }
+                    } catch (e) {
+                        // Chatbot initialization failed silently
+                    }
+                }
+            }
+            
+            // Force voice assistant initialization if missing
+            if (!document.getElementById('voiceAssistantBtn')) {
+                // Voice assistant missing - reinitializing
+                if (window.voiceAssistant || typeof LuxeStayVoiceAssistant !== 'undefined') {
+                    try {
+                        if (!window.voiceAssistant) {
+                            window.voiceAssistant = new LuxeStayVoiceAssistant();
+                        }
+                    } catch (e) {
+                        // Voice assistant initialization failed silently
+                    }
+                }
+            }
+        }
+        
+        // Multiple initialization attempts
+        document.addEventListener('DOMContentLoaded', () => setTimeout(ensureMobileUI, 500));
+        window.addEventListener('load', () => setTimeout(ensureMobileUI, 1000));
+        
+        // Additional check after 3 seconds for slow connections
+        setTimeout(ensureMobileUI, 3000);
+    </script>
 </body>
 </html>

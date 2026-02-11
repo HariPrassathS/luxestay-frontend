@@ -367,7 +367,7 @@ const LoyaltyUI = (function() {
                     }));
                 }
             } catch (error) {
-                console.error('Reward redemption failed:', error);
+                // Error logging removed for production
             }
         }
     };

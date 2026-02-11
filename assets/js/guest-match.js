@@ -51,7 +51,7 @@ const GuestMatch = (function() {
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching recommendations:', error);
+            // Error logging removed for production
             return null;
         }
     }
@@ -76,7 +76,7 @@ const GuestMatch = (function() {
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching contextual recommendations:', error);
+            // Error logging removed for production
             return null;
         }
     }
@@ -92,7 +92,7 @@ const GuestMatch = (function() {
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching popular recommendations:', error);
+            // Error logging removed for production
             return null;
         }
     }

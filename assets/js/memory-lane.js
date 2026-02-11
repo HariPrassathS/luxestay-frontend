@@ -51,7 +51,7 @@ window.MemoryLane = (function() {
                 container.innerHTML = '';
             }
         } catch (error) {
-            console.error('MemoryLane: Error loading memories:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     }
@@ -79,7 +79,7 @@ window.MemoryLane = (function() {
                 container.innerHTML = '';
             }
         } catch (error) {
-            console.error('MemoryLane: Error loading compact view:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     }

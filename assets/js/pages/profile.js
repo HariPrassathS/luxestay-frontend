@@ -215,7 +215,7 @@ async function handlePersonalFormSubmit(e) {
         toggleEditMode(false);
         loadUserProfile();
     } catch (error) {
-        console.error('Failed to update profile:', error);
+        // Error handling
         UI.toast('Failed to update profile. Please try again.', 'error');
     }
 }
@@ -243,7 +243,7 @@ async function handlePasswordFormSubmit(e) {
         UI.toast('Password updated successfully', 'success');
         e.target.reset();
     } catch (error) {
-        console.error('Failed to change password:', error);
+        // Error handling
         UI.toast('Failed to change password. Please check your current password.', 'error');
     }
 }
@@ -265,7 +265,7 @@ async function handlePreferencesFormSubmit(e) {
         await API.updatePreferences(preferences);
         UI.toast('Preferences saved successfully', 'success');
     } catch (error) {
-        console.error('Failed to save preferences:', error);
+        // Error handling
         UI.toast('Failed to save preferences. Please try again.', 'error');
     }
 }
@@ -286,14 +286,14 @@ async function loadRewardsData() {
         });
         
         if (!response.ok) {
-            console.log('Loyalty profile not available');
+            // Logging removed
             return;
         }
         
         const data = await response.json();
         updateRewardsCard(data);
     } catch (error) {
-        console.log('Could not load rewards data:', error);
+        // Logging removed
     }
 }
 
@@ -462,7 +462,7 @@ function compressAndSaveImage(dataUrl, mimeType) {
             
             UI.toast('Profile picture updated successfully!', 'success');
         } catch (error) {
-            console.error('Failed to save profile picture:', error);
+            // Error handling
             UI.toast('Failed to save profile picture. Try a smaller image.', 'error');
         }
     };

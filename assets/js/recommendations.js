@@ -29,7 +29,7 @@ const Recommendations = {
             const response = await API.request(`/recommendations?limit=${limit}`);
             return response.data || [];
         } catch (error) {
-            console.error('Failed to fetch personalized recommendations:', error);
+            // Error logging removed for production
             return [];
         }
     },
@@ -42,7 +42,7 @@ const Recommendations = {
             const response = await API.request(`/recommendations/popular?limit=${limit}`);
             return response.data || [];
         } catch (error) {
-            console.error('Failed to fetch popular recommendations:', error);
+            // Error logging removed for production
             return [];
         }
     },
@@ -55,7 +55,7 @@ const Recommendations = {
             const response = await API.request(`/recommendations/similar/${hotelId}?limit=${limit}`);
             return response.data || [];
         } catch (error) {
-            console.error('Failed to fetch similar hotels:', error);
+            // Error logging removed for production
             return [];
         }
     },
@@ -68,7 +68,7 @@ const Recommendations = {
             const response = await API.request(`/recommendations/destination/${encodeURIComponent(city)}?limit=${limit}`);
             return response.data || [];
         } catch (error) {
-            console.error('Failed to fetch destination recommendations:', error);
+            // Error logging removed for production
             return [];
         }
     },
@@ -366,7 +366,7 @@ const Recommendations = {
                     break;
             }
         } catch (error) {
-            console.error('Failed to initialize recommendations:', error);
+            // Error logging removed for production
         }
         
         // Render recommendations

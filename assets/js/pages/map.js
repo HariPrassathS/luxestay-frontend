@@ -268,7 +268,7 @@
             
             displaySearchResults(validHotels);
         } catch (error) {
-            console.error('Search error:', error);
+            // Error handling
             hideSearchDropdown();
         }
     }
@@ -571,7 +571,7 @@
         
         // FIX #2: Prevent concurrent animations
         if (mapState.isAnimating) {
-            console.log('Navigation blocked: animation in progress');
+            // Logging removed
             return;
         }
         
@@ -635,7 +635,7 @@
             
             renderHotels();
         } catch (error) {
-            console.error('Failed to fetch hotels in bounds:', error);
+            // Error handling
             // Don't clear existing hotels on error
         } finally {
             hideLoading();
@@ -861,7 +861,7 @@
     // This function is replaced by navigateToHotel()
     // Kept for backwards compatibility but should not be used
     function flyToLocation(lat, lng, zoom) {
-        console.warn('flyToLocation() is deprecated. Use navigateToHotel() instead.');
+        // Warning handled is deprecated. Use navigateToHotel() instead.');
         navigateToHotel(lat, lng, null, zoom);
     }
 

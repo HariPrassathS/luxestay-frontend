@@ -59,14 +59,14 @@ const API = {
         } catch (error) {
             // Handle network failures (no internet, server down, etc.)
             if (error instanceof TypeError && error.message === 'Failed to fetch') {
-                console.error('Network Error: Unable to connect to server');
+                // Error logging removed for production
                 throw {
                     status: 0,
                     message: 'Unable to connect to server. Please check your internet connection.',
                     isNetworkError: true
                 };
             }
-            console.error('API Error:', error);
+            // Error logging removed for production
             throw error;
         }
     },

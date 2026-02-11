@@ -46,10 +46,10 @@ class LuxeStayChatbot {
         
         if (window.conversationEngine) {
             this.engine = window.conversationEngine;
-            console.log('Chatbot: Using ConversationEngine v3.0');
+            // Console logging removed for production
             this.useEngine = true;
         } else {
-            console.log('Chatbot: Engine not found, checking backend');
+            // Console logging removed for production
             this.useEngine = false;
             await this.checkBackendHealth();
         }
@@ -65,17 +65,23 @@ class LuxeStayChatbot {
     async checkBackendHealth() {
         try {
             this.isBackendAvailable = await ChatbotAPI.healthCheck();
-            console.log(`Chatbot: Backend ${this.isBackendAvailable ? 'available' : 'unavailable'}`);
+            // Console logging removed for production
         } catch (error) {
             this.isBackendAvailable = false;
-            console.log('Chatbot: Running in offline mode');
+            // Console logging removed for production
         }
     }
 
     createChatbotHTML() {
+        // Check if chatbot already exists
+        if (document.getElementById('chatbot')) {
+            // UI already exists - no action needed
+            return;
+        }
+        
         const chatbotHTML = `
-            <div class="chatbot-container" id="chatbot">
-                <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Chat">
+            <div class="chatbot-container" id="chatbot" style="display: block !important; visibility: visible !important;">
+                <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Chat" title="Chat with LuxeStay AI">
                     <i class="fas fa-robot"></i>
                     <i class="fas fa-times"></i>
                     <span class="chatbot-badge" id="chatbotBadge" style="display: none;">1</span>
@@ -125,6 +131,15 @@ class LuxeStayChatbot {
             </div>
         `;
         document.body.insertAdjacentHTML('beforeend', chatbotHTML);
+        
+        // Ensure visibility on mobile
+        setTimeout(() => {
+            const container = document.getElementById('chatbot');
+            if (container) {
+                container.style.display = 'block';
+                container.style.visibility = 'visible';
+            }
+        }, 100);
     }
 
     cacheElements() {
@@ -161,15 +176,29 @@ class LuxeStayChatbot {
                 this.handleHotelClick(card.dataset.hotelId);
             }
         });
+        
+        // Mobile optimization: Close other modals when chatbot opens
+        this.toggleBtn.addEventListener('click', () => {
+            if (window.voiceAssistant && window.voiceAssistant.elements && window.voiceAssistant.elements.modal) {
+                const voiceModal = window.voiceAssistant.elements.modal;
+                if (voiceModal.classList.contains('active')) {
+                    window.voiceAssistant.closeModal();
+                }
+            }
+        });
     }
 
     toggle() {
         this.isOpen = !this.isOpen;
         this.toggleBtn.classList.toggle('active', this.isOpen);
         this.window.classList.toggle('active', this.isOpen);
+        
         if (this.isOpen) {
             this.badge.style.display = 'none';
             this.input.focus();
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
         }
     }
 
@@ -347,7 +376,7 @@ class LuxeStayChatbot {
                 meta: engineResponse.meta || {}
             };
         } catch (error) {
-            console.error('Engine error, falling back to backend:', error);
+            // Error logging removed for production
             return this.sendToBackend(message);
         }
     }
@@ -386,7 +415,7 @@ class LuxeStayChatbot {
             
             return response;
         } catch (error) {
-            console.error('Backend communication error:', error);
+            // Error logging removed for production
             return this.getOfflineResponse(message);
         }
     }
@@ -491,7 +520,7 @@ class LuxeStayChatbot {
         };
         
         recognition.onerror = (event) => {
-            console.error('Speech recognition error:', event.error);
+            // Error logging removed for production
             this.voiceBtn.classList.remove('listening');
             this.statusText.textContent = 'Always here to help';
         };
@@ -514,12 +543,30 @@ class LuxeStayChatbot {
     }
 }
 
-// Initialize chatbot when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Only initialize if ChatbotAPI is available
+// Initialize chatbot when DOM is ready with fallback
+function initializeChatbot() {
     if (typeof ChatbotAPI !== 'undefined') {
-        window.luxeStayChatbot = new LuxeStayChatbot();
+        if (!window.luxeStayChatbot) {
+            window.luxeStayChatbot = new LuxeStayChatbot();
+            // Initialization successful
+        }
     } else {
-        console.error('ChatbotAPI not loaded. Chatbot requires chatbot-api.js');
+        // ChatbotAPI not loaded, retry in 1 second
+        setTimeout(initializeChatbot, 1000);
+    }
+}
+
+// Try multiple initialization methods for better mobile compatibility
+document.addEventListener('DOMContentLoaded', initializeChatbot);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeChatbot);
+} else {
+    initializeChatbot();
+}
+
+// Fallback initialization after page load
+window.addEventListener('load', () => {
+    if (!window.luxeStayChatbot) {
+        setTimeout(initializeChatbot, 500);
     }
 });

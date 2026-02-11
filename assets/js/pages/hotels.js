@@ -273,7 +273,7 @@ async function fetchHotels(page = 0) {
             throw new Error('Invalid response format');
         }
     } catch (error) {
-        console.error('Error loading hotels:', error);
+        // Error handling
         container.innerHTML = '';
         UI.showErrorWithRetry(container, 'Failed to load hotels. Please check your connection.', () => fetchHotels(page));
     } finally {

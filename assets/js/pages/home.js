@@ -86,7 +86,7 @@ async function loadFeaturedHotels() {
             }
         }
     } catch (error) {
-        console.error('Error loading hotels:', error);
+        // Error handling
         // Show error state - no fake data
         UI.showErrorWithRetry(container, 'Unable to load hotels. Please check your connection.', () => loadFeaturedHotels());
     }
@@ -120,7 +120,7 @@ async function loadDestinations() {
             UI.showEmpty(container, 'No Destinations', 'Check back soon for new destinations', 'fa-map-marker-alt');
         }
     } catch (error) {
-        console.error('Error loading destinations:', error);
+        // Error handling
         // Show error state - no fake data
         UI.showEmpty(container, 'Unable to Load Destinations', 'Please try again later', 'fa-map-marker-alt');
     }

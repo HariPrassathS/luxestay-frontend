@@ -58,12 +58,12 @@ const StayCountdown = (function() {
         try {
             const response = await fetch(`${API_BASE}/api/countdown/booking/${bookingId}`);
             if (!response.ok) {
-                console.warn('Could not fetch countdown for booking:', bookingId);
+                // Warning logging removed for production
                 return null;
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching booking countdown:', error);
+            // Error logging removed for production
             return null;
         }
     }
@@ -75,7 +75,7 @@ const StayCountdown = (function() {
         try {
             const token = localStorage.getItem('token');
             if (!token) {
-                console.warn('No auth token for countdown fetch');
+                // Warning logging removed for production
                 return [];
             }
             
@@ -86,12 +86,12 @@ const StayCountdown = (function() {
             });
             
             if (!response.ok) {
-                console.warn('Could not fetch user countdowns');
+                // Warning logging removed for production
                 return [];
             }
             return await response.json();
         } catch (error) {
-            console.error('Error fetching user countdowns:', error);
+            // Error logging removed for production
             return [];
         }
     }

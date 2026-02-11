@@ -42,7 +42,7 @@ async function loadMyReviews() {
         }
         
     } catch (error) {
-        console.error('Error loading reviews:', error);
+        // Error handling
         reviewsList.innerHTML = `
             <div class="error-state">
                 <div class="empty-reviews-icon">

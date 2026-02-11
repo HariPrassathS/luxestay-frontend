@@ -67,7 +67,7 @@ const ChatbotAPI = {
             
             return data;
         } catch (error) {
-            console.error('ChatbotAPI.query error:', error);
+            // Error logging removed for production
             return this._getFallbackResponse(message);
         }
     },
@@ -95,7 +95,7 @@ const ChatbotAPI = {
             
             return await response.json();
         } catch (error) {
-            console.error('ChatbotAPI.searchHotels error:', error);
+            // Error logging removed for production
             return this._getFallbackResponse(`hotels in ${city}`);
         }
     },
@@ -121,7 +121,7 @@ const ChatbotAPI = {
             
             return await response.json();
         } catch (error) {
-            console.error('ChatbotAPI.getDistance error:', error);
+            // Error logging removed for production
             return { success: false, message: 'Unable to calculate distance' };
         }
     },
@@ -146,7 +146,7 @@ const ChatbotAPI = {
             
             return await response.json();
         } catch (error) {
-            console.error('ChatbotAPI.getCityInfo error:', error);
+            // Error logging removed for production
             return { success: false, message: 'Unable to get city info' };
         }
     },
@@ -178,7 +178,7 @@ const ChatbotAPI = {
             
             return this._cache.cities;
         } catch (error) {
-            console.error('ChatbotAPI.getCities error:', error);
+            // Error logging removed for production
             return ['Chennai', 'Madurai', 'Ooty', 'Kodaikanal', 'Pondicherry']; // Fallback
         }
     },
@@ -210,7 +210,7 @@ const ChatbotAPI = {
             
             return this._cache.suggestions;
         } catch (error) {
-            console.error('ChatbotAPI.getSuggestions error:', error);
+            // Error logging removed for production
             return ['Hotels in Chennai', 'Help', 'Travel packages']; // Fallback
         }
     },
@@ -237,7 +237,7 @@ const ChatbotAPI = {
             
             return await response.json();
         } catch (error) {
-            console.error('ChatbotAPI.getPackages error:', error);
+            // Error logging removed for production
             return { success: false, packages: [] };
         }
     },
@@ -264,7 +264,7 @@ const ChatbotAPI = {
             
             return await response.json();
         } catch (error) {
-            console.error('ChatbotAPI.detectIntent error:', error);
+            // Error logging removed for production
             return { intent: 'GENERAL_QUERY', confidence: 0.5 };
         }
     },
@@ -278,7 +278,7 @@ const ChatbotAPI = {
             const response = await fetch(`${this.BASE_URL}/health`);
             return response.ok;
         } catch (error) {
-            console.error('ChatbotAPI.healthCheck failed:', error);
+            // Error logging removed for production
             return false;
         }
     },

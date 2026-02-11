@@ -62,7 +62,7 @@ async function loadHotelDetails(hotelId) {
             showHotelNotFound();
         }
     } catch (error) {
-        console.error('Error loading hotel:', error);
+        // Error handling
         // API error - show error state, no fake data
         showHotelError();
     }
@@ -388,7 +388,7 @@ async function loadRooms(hotelId) {
             UI.showEmpty(container, 'No Rooms Available', 'This hotel has not added any rooms yet. Please check back later.', 'fa-bed');
         }
     } catch (error) {
-        console.error('Error loading rooms:', error);
+        // Error handling
         // Show empty state on error
         currentRooms = [];
         UI.showEmpty(container, 'Unable to Load Rooms', 'Please try again later.', 'fa-bed');
@@ -425,7 +425,7 @@ async function loadAvailableRooms() {
             renderRooms(currentRooms, checkIn, checkOut);
         }
     } catch (error) {
-        console.error('Error checking availability:', error);
+        // Error handling
         renderRooms(currentRooms, checkIn, checkOut);
     }
 }
@@ -493,7 +493,7 @@ async function loadReviews(hotelId) {
     if (typeof Reviews !== 'undefined') {
         await Reviews.loadHotelReviews(hotelId, container);
     } else {
-        console.error('Reviews module not loaded');
+        // Error handling
         container.innerHTML = '<p class="text-muted">Unable to load reviews.</p>';
     }
 }

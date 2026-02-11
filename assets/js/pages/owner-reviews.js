@@ -50,7 +50,7 @@ async function loadHotelInfo() {
             document.getElementById('hotelName').textContent = response.data.name || 'My Hotel';
         }
     } catch (error) {
-        console.error('Error loading hotel info:', error);
+        // Error handling
     }
 }
 
@@ -107,7 +107,7 @@ async function loadReviewStats() {
         
         // We'll update the other stats when we load all reviews
     } catch (error) {
-        console.error('Error loading review stats:', error);
+        // Error handling
     }
 }
 
@@ -133,7 +133,7 @@ async function loadReviews() {
             showEmptyState(container);
         }
     } catch (error) {
-        console.error('Error loading reviews:', error);
+        // Error handling
         container.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-exclamation-circle"></i>

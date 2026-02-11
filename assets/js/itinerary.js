@@ -30,7 +30,7 @@ class ItineraryGenerator {
         
         // Check if container exists, if not create it
         if (!document.getElementById('itinerary-section')) {
-            console.warn('Itinerary section not found in DOM');
+            // Warning logging removed for production
             return;
         }
 
@@ -112,7 +112,7 @@ class ItineraryGenerator {
      */
     async generateItinerary() {
         if (!this.currentBookingId) {
-            console.error('No booking ID set');
+            // Error logging removed for production
             return;
         }
 
@@ -138,7 +138,7 @@ class ItineraryGenerator {
             generateBtn.disabled = false;
 
         } catch (error) {
-            console.error('Failed to generate itinerary:', error);
+            // Error logging removed for production
             contentDiv.innerHTML = this.renderErrorState(error.message);
             generateBtn.innerHTML = '<i class="fas fa-redo"></i> <span>Try Again</span>';
             generateBtn.disabled = false;
@@ -591,7 +591,7 @@ class ItineraryGenerator {
             try {
                 await navigator.share(shareData);
             } catch (err) {
-                console.log('Share cancelled');
+                // Console logging removed for production
             }
         } else {
             // Fallback: copy to clipboard

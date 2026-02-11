@@ -40,7 +40,7 @@ window.VIPConcierge = (function() {
                 container.innerHTML = '';
             }
         } catch (error) {
-            console.error('VIPConcierge: Error loading status:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     }
@@ -67,7 +67,7 @@ window.VIPConcierge = (function() {
                 container.innerHTML = '';
             }
         } catch (error) {
-            console.error('VIPConcierge: Error loading badge:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     }

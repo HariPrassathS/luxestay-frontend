@@ -1,0 +1,122 @@
+/* Mobile UI Enhancements for Chatbot and Voice Assistant */
+
+/* Ensure floating buttons are always visible on mobile */
+@media (max-width: 768px) {
+    /* Chatbot enhancements */
+    .chatbot-container {
+        position: fixed !important;
+        bottom: var(--space-4) !important;
+        right: var(--space-4) !important;
+        z-index: 9999 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    .chatbot-toggle {
+        display: flex !important;
+        position: relative !important;
+        animation: subtle-pulse 3s ease-in-out infinite;
+    }
+    
+    /* Voice assistant enhancements */
+    .voice-assistant-btn {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 20px !important;
+        z-index: 9998 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    .voice-btn {
+        display: flex !important;
+        position: relative !important;
+        animation: subtle-pulse 3s ease-in-out infinite 1.5s;
+    }
+    
+    /* Subtle animation to draw attention */
+    @keyframes subtle-pulse {
+        0%, 90%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+        95% { 
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+        }
+    }
+    
+    /* Ensure proper spacing between buttons */
+    .voice-assistant-btn {
+        margin-bottom: 0;
+    }
+    
+    .chatbot-container {
+        margin-left: 80px; /* Space for voice button */
+    }
+    
+    /* Mobile-specific touch targets */
+    .chatbot-toggle,
+    .voice-btn {
+        min-width: 48px;
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+    
+    /* Improve modal visibility on mobile */
+    .chatbot-window {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .voice-modal {
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    .voice-modal-content {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Prevent body scroll when modals are open */
+    .modal-open {
+        overflow: hidden !important;
+    }
+    
+    /* iOS Safari specific fixes */
+    @supports (-webkit-appearance: none) {
+        .chatbot-input-field,
+        .voice-text-input {
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .chatbot-toggle,
+    .voice-btn {
+        animation: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .chatbot-toggle {
+        border: 2px solid;
+    }
+    
+    .voice-btn {
+        border: 2px solid;
+    }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+    .chatbot-window {
+        background: linear-gradient(180deg, #1a1a2e, #2a2a3e);
+        color: #ffffff;
+    }
+}

@@ -118,7 +118,7 @@ async function loadReviewStats() {
             document.getElementById('flaggedBadge').textContent = stats.flaggedReviews || 0;
         }
     } catch (error) {
-        console.error('Error loading stats:', error);
+        // Error handling
     }
 }
 
@@ -164,7 +164,7 @@ async function loadReviews() {
             showEmptyState(container);
         }
     } catch (error) {
-        console.error('Error loading reviews:', error);
+        // Error handling
         showErrorState(container);
     }
 }

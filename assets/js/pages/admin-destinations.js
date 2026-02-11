@@ -66,7 +66,7 @@ async function loadDestinations() {
             throw new Error('Failed to load destinations');
         }
     } catch (error) {
-        console.error('Error loading destinations:', error);
+        // Error handling
         
         // If API fails (possibly first time), try to seed
         if (error.status === 404 || destinations.length === 0) {
@@ -98,7 +98,7 @@ async function seedDestinations() {
             UI.toast('Destinations initialized successfully', 'success');
         }
     } catch (error) {
-        console.error('Error seeding destinations:', error);
+        // Error handling
         UI.toast('Failed to initialize destinations', 'error');
     }
 }
@@ -303,7 +303,7 @@ async function saveDestination(event) {
             throw new Error(response.message || 'Failed to save destination');
         }
     } catch (error) {
-        console.error('Error saving destination:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to save destination', 'error');
     } finally {
         submitBtn.innerHTML = originalText;
@@ -342,7 +342,7 @@ async function confirmDelete() {
             throw new Error(response.message || 'Failed to delete destination');
         }
     } catch (error) {
-        console.error('Error deleting destination:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to delete destination', 'error');
     } finally {
         deleteBtn.innerHTML = originalText;
@@ -432,7 +432,7 @@ async function resetToDefaults() {
         try {
             await seedDestinations();
         } catch (error) {
-            console.error('Error resetting destinations:', error);
+            // Error handling
             UI.toast('Failed to reset destinations', 'error');
         }
     }

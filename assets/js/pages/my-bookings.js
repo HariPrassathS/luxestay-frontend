@@ -151,7 +151,7 @@ function initModal() {
                 throw new Error(response.message || 'Failed to cancel booking');
             }
         } catch (error) {
-            console.error('Cancellation error:', error);
+            // Error handling
             UI.toast(error.message || 'Failed to cancel booking', 'error');
             closeModal();
         }
@@ -186,7 +186,7 @@ async function loadStayCountdowns(bookings) {
                 addCountdownToCard(bookingCard, countdown);
             }
         } catch (error) {
-            console.warn('Could not load countdown for booking:', booking.id);
+            // Warning handled
         }
     }
 }
@@ -252,11 +252,11 @@ async function loadBookings() {
         if (response.success && response.data) {
             allBookings = response.data;
         } else {
-            console.error('Invalid response format', response);
+            // Error handling
             UI.showErrorWithRetry(container, 'Failed to load your bookings.', loadBookings);
         }
     } catch (error) {
-        console.error('Error loading bookings:', error);
+        // Error handling
         UI.showErrorWithRetry(container, 'Connection error. Please check your network.', loadBookings);
         return; // Don't proceed to update counts if loading failed
     }
@@ -384,7 +384,7 @@ function showItinerarySection(bookingId) {
     const bookingsList = document.getElementById('bookingsList');
     
     if (!itinerarySection) {
-        console.error('Itinerary section not found');
+        // Error handling
         return;
     }
 
@@ -573,7 +573,7 @@ async function checkReviewEligibility(bookings) {
                 }
             }
         } catch (error) {
-            console.error(`Error checking review eligibility for booking ${booking.id}:`, error);
+            // Error handling
             reviewEligibility[booking.id] = false;
         }
     }

@@ -63,7 +63,7 @@ async function loadHotels() {
         const response = await API.admin.getHotels();
         hotels = response.data || response.content || response || [];
     } catch (error) {
-        console.error('Failed to load hotels:', error);
+        // Error handling
         hotels = [];
     }
     
@@ -104,7 +104,7 @@ async function loadRooms() {
         document.getElementById('roomCount').textContent = rooms.length;
         renderRooms(rooms);
     } catch (error) {
-        console.error('Failed to load rooms:', error);
+        // Error handling
         loadingState.classList.add('hidden');
         emptyState.classList.remove('hidden');
         document.getElementById('roomCount').textContent = '0';
@@ -248,7 +248,7 @@ async function confirmDelete() {
         UI.toast('Room deleted successfully', 'success');
         await loadRooms();
     } catch (error) {
-        console.error('Failed to delete room:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to delete room', 'error');
     }
     
@@ -297,7 +297,7 @@ async function handleSubmit(e) {
         document.getElementById('roomModal').classList.remove('active');
         loadRooms();
     } catch (error) {
-        console.error('Failed to save room:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to save room', 'error');
     } finally {
         btnText.classList.remove('hidden');

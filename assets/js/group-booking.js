@@ -39,7 +39,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to create group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -55,7 +55,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to join group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -69,7 +69,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to get group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -83,7 +83,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to get group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -96,7 +96,7 @@ const GroupBooking = {
             const response = await API.request('/group-bookings/my-groups');
             return response.data || [];
         } catch (error) {
-            console.error('Failed to get my groups:', error);
+            // Error logging removed for production
             return [];
         }
     },
@@ -113,7 +113,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to select room:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -129,7 +129,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to lock group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -145,7 +145,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to confirm group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -162,7 +162,7 @@ const GroupBooking = {
             this.currentGroup = response.data;
             return response.data;
         } catch (error) {
-            console.error('Failed to cancel group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -178,7 +178,7 @@ const GroupBooking = {
             this.currentGroup = null;
             return true;
         } catch (error) {
-            console.error('Failed to leave group:', error);
+            // Error logging removed for production
             throw error;
         }
     },
@@ -190,7 +190,7 @@ const GroupBooking = {
      */
     connectWebSocket(groupCode) {
         if (typeof SockJS === 'undefined' || typeof Stomp === 'undefined') {
-            console.warn('SockJS/Stomp not loaded, real-time updates disabled');
+            // Warning logging removed for production
             return;
         }
         
@@ -211,7 +211,7 @@ const GroupBooking = {
      * Handle WebSocket connection
      */
     onWebSocketConnected(groupCode) {
-        console.log('WebSocket connected for group:', groupCode);
+        // Console logging removed for production
         this.isConnected = true;
         this.reconnectAttempts = 0;
         
@@ -226,7 +226,7 @@ const GroupBooking = {
      * Handle WebSocket error
      */
     onWebSocketError(error) {
-        console.error('WebSocket error:', error);
+        // Error logging removed for production
         this.isConnected = false;
         
         // Attempt reconnect
@@ -244,7 +244,7 @@ const GroupBooking = {
      * Handle group update event
      */
     handleGroupUpdate(event) {
-        console.log('Group update:', event);
+        // Console logging removed for production
         
         // Show update toast
         this.showUpdateToast(event.message);

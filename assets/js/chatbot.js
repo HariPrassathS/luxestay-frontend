@@ -133,7 +133,7 @@ class LuxeStayChatbot {
                 const hotelsList = hotelsData.data?.content || hotelsData.data || hotelsData.content || hotelsData;
                 if (Array.isArray(hotelsList) && hotelsList.length > 0) {
                     this.hotels = hotelsList;
-                    console.log(`Chatbot: Loaded ${this.hotels.length} hotels from database`);
+                    // Console logging removed for production
                 }
             }
 
@@ -145,16 +145,16 @@ class LuxeStayChatbot {
                 const citiesList = citiesData.data || citiesData;
                 if (Array.isArray(citiesList) && citiesList.length > 0) {
                     this.cities = citiesList;
-                    console.log(`Chatbot: Loaded ${this.cities.length} cities`);
+                    // Console logging removed for production
                 }
             }
         } catch (error) {
-            console.log('Chatbot: API unavailable, working with limited data');
+            // Console logging removed for production
         }
         
         // No fallback - database is single source of truth
         if (this.hotels.length === 0) {
-            console.log('Chatbot: No hotels available from database');
+            // Console logging removed for production
         }
     }
     

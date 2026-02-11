@@ -69,7 +69,7 @@ class LuxeStayVoiceAssistant {
         this.checkSupport();
         
         if (!this.isSupported) {
-            console.warn('VoiceAssistant: Speech recognition not supported');
+            // Speech recognition not supported
             return;
         }
         
@@ -99,13 +99,13 @@ class LuxeStayVoiceAssistant {
         
         if (window.conversationEngine) {
             this.engine = window.conversationEngine;
-            console.log('VoiceAssistant: Using ConversationEngine');
+            // Engine initialization successful
             this.useEngine = true;
         } else {
-            console.log('VoiceAssistant: Engine not found, using backend API');
+            // Console logging removed for production
             this.useEngine = false;
         }
-    }
+        
         // Bind events
         this.bindEvents();
         
@@ -113,7 +113,7 @@ class LuxeStayVoiceAssistant {
         this.loadVoice();
         
         this.isInitialized = true;
-        console.log('VoiceAssistant: Initialized successfully');
+        // Console logging removed for production
     }
     
     /**
@@ -145,7 +145,7 @@ class LuxeStayVoiceAssistant {
         this.recognition.onstart = () => {
             this.isListening = true;
             this.updateState('listening');
-            console.log('VoiceAssistant: Listening...');
+            // Console logging removed for production
         };
         
         this.recognition.onend = () => {
@@ -154,7 +154,7 @@ class LuxeStayVoiceAssistant {
                 this.processTranscript(this.transcript);
             }
             this.updateState('idle');
-            console.log('VoiceAssistant: Stopped listening');
+            // Console logging removed for production
         };
         
         this.recognition.onresult = (event) => {
@@ -216,12 +216,20 @@ class LuxeStayVoiceAssistant {
      * Create voice assistant UI
      */
     createUI() {
+        // Check if UI already exists
+        if (document.getElementById('voiceAssistantBtn')) {
+            // UI already exists - no action needed
+            return;
+        }
+        
         // Create floating voice button
         const voiceButton = document.createElement('div');
         voiceButton.className = 'voice-assistant-btn';
         voiceButton.id = 'voiceAssistantBtn';
+        voiceButton.style.display = 'block';
+        voiceButton.style.visibility = 'visible';
         voiceButton.innerHTML = `
-            <button class="voice-btn" id="voiceTrigger" aria-label="Voice Search">
+            <button class="voice-btn" id="voiceTrigger" aria-label="Voice Search" title="Voice Search">
                 <i class="fas fa-microphone"></i>
                 <span class="voice-pulse"></span>
             </button>
@@ -306,9 +314,17 @@ class LuxeStayVoiceAssistant {
             </div>
         `;
         
-        // Add to DOM
+        // Add to DOM with fallback positioning
         document.body.appendChild(voiceButton);
         document.body.appendChild(voiceModal);
+        
+        // Ensure visibility on mobile
+        setTimeout(() => {
+            if (voiceButton) {
+                voiceButton.style.display = 'block';
+                voiceButton.style.visibility = 'visible';
+            }
+        }, 100);
         
         // Cache elements
         this.elements = {
@@ -394,8 +410,14 @@ class LuxeStayVoiceAssistant {
      * Open voice modal
      */
     openModal() {
+        // Close chatbot if open to prevent conflicts on mobile
+        if (window.luxeStayChatbot && window.luxeStayChatbot.isOpen) {
+            window.luxeStayChatbot.toggle();
+        }
+        
         this.elements.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
         
         // Auto-start listening after short delay
         setTimeout(() => {
@@ -411,6 +433,7 @@ class LuxeStayVoiceAssistant {
         this.stopSpeaking();
         this.elements.modal.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
         this.resetUI();
     }
     
@@ -477,7 +500,7 @@ class LuxeStayVoiceAssistant {
             this.recognition.start();
             this.updateUI('listening');
         } catch (error) {
-            console.error('VoiceAssistant: Failed to start recognition', error);
+            // Error logging removed for production
             this.handleRecognitionError({ error: 'start-failed' });
         }
     }
@@ -527,7 +550,7 @@ class LuxeStayVoiceAssistant {
      * Handle speech recognition errors
      */
     handleRecognitionError(event) {
-        console.error('VoiceAssistant: Recognition error', event.error);
+        // Error logging removed for production
         
         let message = '';
         let shouldShowError = true;
@@ -612,7 +635,7 @@ class LuxeStayVoiceAssistant {
             }
             
         } catch (error) {
-            console.error('VoiceAssistant: Error processing transcript', error);
+            // Error logging removed for production
             // Show a more helpful error message
             this.handleFallbackResponse({
                 success: false,
@@ -650,7 +673,7 @@ class LuxeStayVoiceAssistant {
                 meta: engineResponse.meta || {}
             };
         } catch (error) {
-            console.error('VoiceAssistant: Engine error', error);
+            // Error logging removed for production
             return this.getFallbackResponse(transcript);
         }
     }
@@ -722,7 +745,7 @@ class LuxeStayVoiceAssistant {
             return await response.json();
             
         } catch (error) {
-            console.error('VoiceAssistant: API Error', error);
+            // Error logging removed for production
             return this.getFallbackResponse(transcript);
         }
     }
@@ -1180,7 +1203,7 @@ class LuxeStayVoiceAssistant {
         };
         
         utterance.onerror = (event) => {
-            console.error('VoiceAssistant: Speech synthesis error', event);
+            // Error logging removed for production
             this.isSpeaking = false;
         };
         
@@ -1367,11 +1390,26 @@ class LuxeStayVoiceAssistant {
     }
 }
 
-// Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Only initialize if not already present and speech is supported
+// Enhanced initialization for better mobile support
+function initializeVoiceAssistant() {
     if (!window.voiceAssistant) {
         window.voiceAssistant = new LuxeStayVoiceAssistant();
+        // Initialization successful
+    }
+}
+
+// Multiple initialization triggers for mobile compatibility
+document.addEventListener('DOMContentLoaded', initializeVoiceAssistant);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVoiceAssistant);
+} else {
+    initializeVoiceAssistant();
+}
+
+// Fallback initialization
+window.addEventListener('load', () => {
+    if (!window.voiceAssistant) {
+        setTimeout(initializeVoiceAssistant, 500);
     }
 });
 

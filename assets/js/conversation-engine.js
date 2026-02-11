@@ -93,7 +93,7 @@ class ConversationEngine {
                 }
             }
         } catch (e) {
-            console.log('ConversationEngine: Fresh context');
+            // Console logging removed for production
         }
         
         return this.createFreshContext();
@@ -162,9 +162,9 @@ class ConversationEngine {
                 this.cities = data.data || data || [];
             }
             
-            console.log(`ConversationEngine: Loaded ${this.hotels.length} hotels, ${this.cities.length} cities`);
+            // Console logging removed for production
         } catch (e) {
-            console.log('ConversationEngine: Using cached/offline data');
+            // Console logging removed for production
         }
     }
     

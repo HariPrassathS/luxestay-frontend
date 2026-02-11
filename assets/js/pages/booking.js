@@ -76,7 +76,7 @@ async function loadBookingDetails() {
         
         renderBookingPage();
     } catch (error) {
-        console.error('Error loading booking details:', error);
+        // Error handling
         showBookingError('Unable to load booking details. Please check your connection and try again.');
     }
 }
@@ -404,7 +404,7 @@ async function submitBooking() {
             throw new Error(response.message || 'Booking failed');
         }
     } catch (error) {
-        console.error('Booking error:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to create booking. Please try again.', 'error');
         
         // Reset button

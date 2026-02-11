@@ -92,7 +92,7 @@ async function loadDashboardData() {
         ]);
         
     } catch (error) {
-        console.error('Failed to load dashboard:', error);
+        // Error handling
         UI.toast('Failed to load dashboard data', 'error');
     }
 }
@@ -134,7 +134,7 @@ async function loadRooms() {
         allRooms = response.data || response || [];
         renderRoomsGrid(allRooms);
     } catch (error) {
-        console.error('Failed to load rooms:', error);
+        // Error handling
         document.getElementById('roomsGrid').innerHTML = 
             '<p class="empty-state">Failed to load rooms</p>';
     }
@@ -215,7 +215,7 @@ async function loadBookings() {
         allBookings = Array.isArray(bookingsData) ? bookingsData : [];
         renderRecentBookings(allBookings.slice(0, 5));
     } catch (error) {
-        console.error('Failed to load bookings:', error);
+        // Error handling
         document.getElementById('recentBookingsTable').innerHTML = 
             '<tr><td colspan="8" class="text-center">Failed to load bookings</td></tr>';
     }
@@ -292,7 +292,7 @@ async function loadTodayCheckins() {
         document.getElementById('checkinCount').textContent = checkins.length;
         renderCheckins(checkins);
     } catch (error) {
-        console.error('Failed to load check-ins:', error);
+        // Error handling
     }
 }
 
@@ -336,7 +336,7 @@ async function loadTodayCheckouts() {
         document.getElementById('checkoutCount').textContent = checkouts.length;
         renderCheckouts(checkouts);
     } catch (error) {
-        console.error('Failed to load check-outs:', error);
+        // Error handling
     }
 }
 
@@ -378,7 +378,7 @@ async function quickCheckIn(bookingId) {
         UI.toast('Guest checked in successfully', 'success');
         loadDashboardData();
     } catch (error) {
-        console.error('Failed to check in:', error);
+        // Error handling
         UI.toast('Failed to check in guest', 'error');
     }
 }
@@ -392,7 +392,7 @@ async function quickCheckOut(bookingId) {
         UI.toast('Guest checked out successfully', 'success');
         loadDashboardData();
     } catch (error) {
-        console.error('Failed to check out:', error);
+        // Error handling
         UI.toast('Failed to check out guest', 'error');
     }
 }
@@ -406,7 +406,7 @@ async function toggleRoomAvailability(roomId) {
         UI.toast('Room availability updated', 'success');
         loadRooms();
     } catch (error) {
-        console.error('Failed to toggle availability:', error);
+        // Error handling
         UI.toast('Failed to update room availability', 'error');
     }
 }
@@ -483,7 +483,7 @@ async function handleAddRoom(event) {
         loadRooms();
         loadDashboardData();
     } catch (error) {
-        console.error('Failed to add room:', error);
+        // Error handling
         // Show more detailed error message if available
         let errorMessage = 'Failed to add room';
         if (error.errors) {
@@ -524,7 +524,7 @@ async function handleUpdateStatus(event) {
         loadBookings();
         loadDashboardData();
     } catch (error) {
-        console.error('Failed to update status:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to update booking status', 'error');
     }
 }

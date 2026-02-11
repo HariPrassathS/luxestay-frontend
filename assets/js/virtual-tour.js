@@ -40,7 +40,7 @@ const VirtualTour = {
     async init(containerId, tourId, options = {}) {
         this.container = document.getElementById(containerId);
         if (!this.container) {
-            console.error('Virtual tour container not found');
+            // Error logging removed for production
             return;
         }
         
@@ -73,7 +73,7 @@ const VirtualTour = {
             this.initViewer();
             
         } catch (error) {
-            console.error('Failed to initialize virtual tour:', error);
+            // Error logging removed for production
             this.showFallback('Failed to load tour');
         }
     },
@@ -86,7 +86,7 @@ const VirtualTour = {
             const response = await API.request(`/tours/view/${tourId}`);
             return response.data;
         } catch (error) {
-            console.error('Failed to fetch tour:', error);
+            // Error logging removed for production
             return null;
         }
     },
@@ -99,7 +99,7 @@ const VirtualTour = {
             const response = await API.request(`/tours/${tourId}/scenes/${sceneId}`);
             return response.data;
         } catch (error) {
-            console.error('Failed to fetch scene:', error);
+            // Error logging removed for production
             return null;
         }
     },
@@ -429,7 +429,7 @@ const VirtualTour = {
             scene = await this.fetchScene(this.currentTour.id, sceneId);
             if (!scene) {
                 this.hideLoading();
-                console.error('Failed to load scene');
+                // Error logging removed for production
                 return;
             }
         }
@@ -542,7 +542,7 @@ const VirtualTour = {
                         return;
                     }
                 } catch (error) {
-                    console.error('Gyroscope permission error:', error);
+                    // Error logging removed for production
                     return;
                 }
             }

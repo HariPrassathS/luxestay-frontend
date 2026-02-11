@@ -52,7 +52,7 @@ async function loadBookings() {
         // Handle paged response: { data: { content: [...] } }
         bookings = response.data?.content || response.content || response.data || response || [];
     } catch (error) {
-        console.error('Error loading admin bookings:', error);
+        // Error handling
         bookings = [];
         UI.toast('Failed to load bookings', 'error');
     }
@@ -389,7 +389,7 @@ async function confirmStatusUpdate() {
             throw new Error(response.message || 'Failed to update booking status');
         }
     } catch (error) {
-        console.error('Error updating booking status:', error);
+        // Error handling
         UI.toast(`Failed to update booking: ${error.message || 'Server error'}`, 'error');
         document.getElementById('statusModal').classList.remove('active');
     } finally {

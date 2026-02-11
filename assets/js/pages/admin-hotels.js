@@ -101,7 +101,7 @@ async function loadPendingApprovals() {
         `).join('');
         
     } catch (error) {
-        console.warn('Failed to load pending approvals:', error);
+        // Warning handled
         document.getElementById('pendingApprovalsCard').style.display = 'none';
     }
 }
@@ -177,7 +177,7 @@ window.handleApprove = async function() {
         loadPendingApprovals();
         loadHotels();
     } catch (error) {
-        console.error('Failed to approve hotel:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to approve hotel', 'error');
     }
 };
@@ -209,7 +209,7 @@ window.handleReject = async function() {
         loadPendingApprovals();
         loadHotels();
     } catch (error) {
-        console.error('Failed to reject hotel:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to reject hotel', 'error');
     }
 };
@@ -224,7 +224,7 @@ window.quickApprove = async function(hotelId) {
         loadPendingApprovals();
         loadHotels();
     } catch (error) {
-        console.error('Failed to approve hotel:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to approve hotel', 'error');
     }
 };
@@ -271,7 +271,7 @@ async function loadHotels() {
         document.getElementById('hotelCount').textContent = hotels.length;
         renderHotels(hotels);
     } catch (error) {
-        console.error('Failed to load hotels:', error);
+        // Error handling
         loadingState.classList.add('hidden');
         emptyState.classList.remove('hidden');
         document.getElementById('hotelCount').textContent = '0';
@@ -460,7 +460,7 @@ async function confirmDelete() {
         document.getElementById('deleteModal').classList.remove('active');
         loadHotels();
     } catch (error) {
-        console.error('Failed to delete hotel:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to delete hotel', 'error');
         document.getElementById('deleteModal').classList.remove('active');
     }
@@ -507,7 +507,7 @@ async function handleSubmit(e) {
         document.getElementById('hotelModal').classList.remove('active');
         loadHotels();
     } catch (error) {
-        console.error('Failed to save hotel:', error);
+        // Error handling
         UI.toast(error.message || 'Failed to save hotel', 'error');
     } finally {
         btnText.classList.remove('hidden');

@@ -26,7 +26,7 @@ const Wishlist = {
             this.isInitialized = true;
             this.updateAllButtons();
         } catch (error) {
-            console.error('Failed to fetch wishlist:', error);
+            // Error logging removed for production
         }
     },
     
@@ -76,7 +76,7 @@ const Wishlist = {
             
             return !wasWishlisted;
         } catch (error) {
-            console.error('Failed to toggle wishlist:', error);
+            // Error logging removed for production
             
             // Revert optimistic update
             if (button) {
@@ -157,7 +157,7 @@ const Wishlist = {
         try {
             return await API.wishlist.getAll();
         } catch (error) {
-            console.error('Failed to fetch wishlist items:', error);
+            // Error logging removed for production
             return [];
         }
     },

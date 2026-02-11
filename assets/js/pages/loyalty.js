@@ -70,7 +70,7 @@ async function checkAuthAndLoad() {
             showDashboard();
             // Load dashboard separately - errors here shouldn't redirect to login
             loadLoyaltyDashboard().catch(error => {
-                console.error('Dashboard load error:', error);
+                // Error handling
             });
         } else {
             // Token exists but no user data - try to fetch
@@ -79,13 +79,13 @@ async function checkAuthAndLoad() {
                 if (currentUser) {
                     showDashboard();
                     loadLoyaltyDashboard().catch(error => {
-                        console.error('Dashboard load error:', error);
+                        // Error handling
                     });
                 } else {
                     showLoginPrompt();
                 }
             } catch (error) {
-                console.error('Failed to fetch user:', error);
+                // Error handling
                 showLoginPrompt();
             }
         }
@@ -193,7 +193,7 @@ async function loadLoyaltyDashboard() {
         
         renderDashboard();
     } catch (error) {
-        console.error('Failed to load loyalty dashboard:', error);
+        // Error handling
         showToast('Failed to load loyalty data', 'error');
     } finally {
         hideLoading();
@@ -221,7 +221,7 @@ function renderLevelCard() {
     const nextLevel = loyaltyDashboard.nextLevel;
     
     if (!profile || !level) {
-        console.error('Missing profile or level data');
+        // Error handling
         return;
     }
     
@@ -521,7 +521,7 @@ async function loadActiveRedemptions() {
             `;
         });
     } catch (error) {
-        console.error('Failed to load redemptions:', error);
+        // Error handling
     }
 }
 
@@ -654,7 +654,7 @@ async function generateReferralCode() {
         if (referralCodeEl) referralCodeEl.textContent = response.referralCode;
         showToast('Referral code generated!', 'success');
     } catch (error) {
-        console.error('Failed to generate referral code:', error);
+        // Error handling
     }
 }
 
@@ -788,7 +788,7 @@ async function redeemReward(rewardId) {
         // Reload dashboard to update XP and redemptions
         await loadLoyaltyDashboard();
     } catch (error) {
-        console.error('Failed to redeem reward:', error);
+        // Error handling
         showToast(error.message || 'Failed to redeem reward', 'error');
     } finally {
         hideLoading();

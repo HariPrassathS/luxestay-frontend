@@ -300,7 +300,7 @@ const ReviewForm = (function() {
             }
             
         } catch (error) {
-            console.error('Review submission error:', error);
+            // Error logging removed for production
             
             if (error.status === 429) {
                 showFormError(form, 'Too many reviews submitted. Please try again later.');

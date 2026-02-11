@@ -201,8 +201,8 @@ const CONFIG = window.CONFIG;
 // Wraps console methods and only outputs in development
 const Debug = {
     log: (...args) => !CONFIG.IS_PRODUCTION && console.log('[LuxeStay]', ...args),
-    warn: (...args) => !CONFIG.IS_PRODUCTION && console.warn('[LuxeStay]', ...args),
-    error: (...args) => console.error('[LuxeStay Error]', ...args), // Always log errors
+    warn: (...args) => !CONFIG.IS_PRODUCTION && console.warn('[LuxeStay]', ...args), 
+    error: (...args) => console.error('[LuxeStay]', ...args), // Always log errors
     info: (...args) => !CONFIG.IS_PRODUCTION && console.info('[LuxeStay]', ...args)
 };
 

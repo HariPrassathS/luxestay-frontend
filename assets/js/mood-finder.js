@@ -181,7 +181,7 @@ const MoodFinder = {
             this.moods = data.moods || [];
             this.renderMoodCards();
         } catch (error) {
-            console.error('Error loading moods:', error);
+            // Error logging removed for production
             this.renderMoodError();
         }
     },
@@ -293,7 +293,7 @@ const MoodFinder = {
             this.results = data.hotels || [];
             this.renderResults(data);
         } catch (error) {
-            console.error('Error searching by mood:', error);
+            // Error logging removed for production
             this.renderResultsError();
         }
     },

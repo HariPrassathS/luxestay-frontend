@@ -42,7 +42,7 @@ window.SmartSearch = (function() {
     function init(inputSelector = '#search-input') {
         elements.searchInput = document.querySelector(inputSelector);
         if (!elements.searchInput) {
-            console.warn('SmartSearch: Input element not found');
+            // Warning logging removed for production
             return;
         }
 
@@ -54,7 +54,7 @@ window.SmartSearch = (function() {
         createMobileModal();
         attachEventListeners();
         
-        console.log('SmartSearch initialized');
+        // Console logging removed for production
     }
 
     // ==================== UI CREATION ====================
@@ -295,7 +295,7 @@ window.SmartSearch = (function() {
                 renderDropdownSuggestions(data);
             }
         } catch (error) {
-            console.error('SmartSearch: Error fetching suggestions', error);
+            // Error logging removed for production
             state.isLoading = false;
             showNoResults(isModal);
         }
@@ -319,7 +319,7 @@ window.SmartSearch = (function() {
             renderDropdownSuggestions(data, true);
             openDropdown();
         } catch (error) {
-            console.error('SmartSearch: Error fetching popular', error);
+            // Error logging removed for production
         }
     }
 
@@ -598,7 +598,7 @@ window.SmartSearch = (function() {
                 });
             }
         } catch (error) {
-            console.error('SmartSearch: Error fetching popular for modal', error);
+            // Error logging removed for production
         }
     }
 
@@ -679,7 +679,7 @@ window.SmartSearch = (function() {
         try {
             localStorage.setItem('luxe_recent_searches', JSON.stringify(state.recentSearches));
         } catch (e) {
-            console.warn('SmartSearch: Could not save recent searches');
+            // Warning logging removed for production
         }
     }
 

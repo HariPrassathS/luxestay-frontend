@@ -49,7 +49,7 @@ window.RoomComparison = (function() {
     function init(containerSelector, options = {}) {
         elements.container = document.querySelector(containerSelector);
         if (!elements.container) {
-            console.warn('RoomComparison: Container not found');
+            // Warning logging removed for production
             return;
         }
 
@@ -75,7 +75,7 @@ window.RoomComparison = (function() {
             }
         }, 250));
 
-        console.log('RoomComparison initialized');
+        // Console logging removed for production
     }
 
     function determineViewMode() {
@@ -257,7 +257,7 @@ window.RoomComparison = (function() {
             updateCount();
             render();
         } catch (error) {
-            console.error('RoomComparison: Error fetching data', error);
+            // Error logging removed for production
             state.isLoading = false;
             showError();
         }

@@ -38,7 +38,7 @@ const RealTimeAvailability = (function() {
     
     function init() {
         if (typeof SockJS === 'undefined' || typeof Stomp === 'undefined') {
-            console.warn('RealTimeAvailability: SockJS or STOMP not loaded. Loading dynamically...');
+            // Warning logging removed for production
             loadDependencies().then(connect);
             return;
         }
@@ -79,13 +79,13 @@ const RealTimeAvailability = (function() {
                 onError
             );
         } catch (error) {
-            console.error('RealTimeAvailability: Connection error', error);
+            // Error logging removed for production
             scheduleReconnect();
         }
     }
     
     function onConnected(frame) {
-        console.log('RealTimeAvailability: Connected');
+        // Console logging removed for production
         connected = true;
         reconnectAttempts = 0;
         
@@ -103,7 +103,7 @@ const RealTimeAvailability = (function() {
     }
     
     function onError(error) {
-        console.error('RealTimeAvailability: Connection error', error);
+        // Error logging removed for production
         connected = false;
         
         // Notify connection callbacks
@@ -121,7 +121,7 @@ const RealTimeAvailability = (function() {
             CONFIG.maxReconnectDelay
         );
         
-        console.log(`RealTimeAvailability: Reconnecting in ${delay}ms...`);
+        // Console logging removed for production
         reconnectAttempts++;
         
         setTimeout(connect, delay);
@@ -173,12 +173,12 @@ const RealTimeAvailability = (function() {
                 const data = JSON.parse(message.body);
                 callback(data);
             } catch (e) {
-                console.error('RealTimeAvailability: Error parsing message', e);
+                // Error logging removed for production
             }
         });
         
         subscriptions.set(destination, subscription);
-        console.log('RealTimeAvailability: Subscribed to', destination);
+        // Console logging removed for production
         
         return {
             id: subscription.id,
@@ -200,7 +200,7 @@ const RealTimeAvailability = (function() {
     
     function checkAvailability(hotelId, checkIn, checkOut) {
         if (!connected || !stompClient) {
-            console.warn('RealTimeAvailability: Not connected, using fallback');
+            // Warning logging removed for production
             return checkAvailabilityFallback(hotelId, checkIn, checkOut);
         }
         
@@ -228,7 +228,7 @@ const RealTimeAvailability = (function() {
                 return data.data;
             }
         } catch (error) {
-            console.error('RealTimeAvailability: Fallback failed', error);
+            // Error logging removed for production
         }
         return null;
     }

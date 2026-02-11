@@ -69,7 +69,7 @@ async function fetchBookingConfidence(roomId, checkInDate, checkOutDate) {
 
         return await response.json();
     } catch (error) {
-        console.error('Failed to fetch booking confidence:', error);
+        // Error logging removed for production
         return null;
     }
 }
@@ -90,7 +90,7 @@ function getAuthToken() {
  */
 function renderConfidencePanel(confidence, container) {
     if (!confidence || !container) {
-        console.warn('Missing confidence data or container');
+        // Warning logging removed for production
         return;
     }
 
@@ -236,7 +236,7 @@ function renderConfidenceWidget(confidence) {
 async function initializeBookingConfidence(roomId, checkInDate, checkOutDate) {
     const container = document.getElementById('booking-confidence-panel');
     if (!container) {
-        console.warn('Confidence panel container not found');
+        // Warning logging removed for production
         return;
     }
 
@@ -262,7 +262,7 @@ async function initializeBookingConfidence(roomId, checkInDate, checkOutDate) {
             `;
         }
     } catch (error) {
-        console.error('Error initializing confidence:', error);
+        // Error logging removed for production
         container.innerHTML = '';
     }
 }

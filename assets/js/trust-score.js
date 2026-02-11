@@ -44,7 +44,7 @@ const TrustScore = {
             this.animateScore(container, trustScore.score);
             
         } catch (error) {
-            console.error('Error loading trust score:', error);
+            // Error logging removed for production
             container.innerHTML = this.renderError();
         }
     },
@@ -60,7 +60,7 @@ const TrustScore = {
             const summary = await this.fetchTrustScoreSummary(hotelId);
             container.innerHTML = this.renderTrustBadge(summary);
         } catch (error) {
-            console.error('Error loading trust badge:', error);
+            // Error logging removed for production
             container.innerHTML = '';
         }
     },

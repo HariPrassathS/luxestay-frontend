@@ -1,0 +1,22 @@
+{
+  "javascript.validate.enable": true,
+  "typescript.validate.enable": false,
+  "javascript.suggestionActions.enabled": true,
+  "typescript.suggestionActions.enabled": false,
+  "javascript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "javascript.format.enable": true,
+  "typescript.format.enable": false,
+  "javascript.implicitProjectConfig.checkJs": false,
+  "typescript.implicitProjectConfig.checkJs": false,
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript"
+  ]
+}
