@@ -68,21 +68,16 @@ class LuxeStayVoiceAssistant {
         // Check browser support
         this.checkSupport();
         
-        if (!this.isSupported) {
-            // Speech recognition not supported
-            return;
+        // Initialize speech recognition (if supported)
+        if (this.isSupported) {
+            this.initRecognition();
+            this.initSynthesis();
         }
-        
-        // Initialize speech recognition
-        this.initRecognition();
-        
-        // Initialize speech synthesis
-        this.initSynthesis();
         
         // Wait for conversation engine
         await this.initEngine();
         
-        // Create UI
+        // Always create UI (even if speech not supported - will show text fallback)
         this.createUI();
         
     }
@@ -362,7 +357,13 @@ class LuxeStayVoiceAssistant {
         this.elements.backdrop.addEventListener('click', () => this.closeModal());
         
         // Mic button
-        this.elements.micBtn.addEventListener('click', () => this.toggleListening());
+        this.elements.micBtn.addEventListener('click', () => {
+            if (!this.isSupported) {
+                this.showTextFallback();
+                return;
+            }
+            this.toggleListening();
+        });
         this.elements.stopBtn.addEventListener('click', () => this.stopListening());
         
         // Suggestions
@@ -419,10 +420,17 @@ class LuxeStayVoiceAssistant {
         document.body.style.overflow = 'hidden';
         document.body.classList.add('modal-open');
         
-        // Auto-start listening after short delay
-        setTimeout(() => {
-            this.startListening();
-        }, 500);
+        // Show message if speech recognition not supported
+        if (!this.isSupported) {
+            this.elements.statusText.textContent = 'Voice recognition not available - please type your request below';
+            this.elements.micBtn.style.display = 'none';
+            this.elements.textInput.focus();
+        } else {
+            // Auto-start listening after short delay (only if supported)
+            setTimeout(() => {
+                this.startListening();
+            }, 500);
+        }
     }
     
     /**
@@ -1318,6 +1326,16 @@ class LuxeStayVoiceAssistant {
         this.elements.responseContent.innerHTML = '';
         this.elements.response.classList.remove('active');
         this.updateUI('idle');
+    }
+    
+    /**
+     * Show text fallback when speech not supported
+     */
+    showTextFallback() {
+        this.elements.textInput.focus();
+        if (typeof UI !== 'undefined') {
+            UI.toast('Voice recognition is only available on Chrome and Edge browsers. Please use the text input.', 'info', 6000);
+        }
     }
     
     /**

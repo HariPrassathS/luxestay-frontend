@@ -42,8 +42,14 @@ const API = {
                 // Handle 401 Unauthorized
                 if (response.status === 401) {
                     Auth.logout();
-                    // Only redirect if not already on login page
-                    if (!window.location.pathname.includes('login.html')) {
+                    
+                    // Public pages that don't require authentication
+                    const publicPages = ['index.html', 'hotels.html', 'hotel-detail.html', 'map.html', '/', ''];
+                    const currentPage = window.location.pathname.split('/').pop();
+                    const isPublicPage = publicPages.includes(currentPage);
+                    
+                    // Only redirect if not on public page and not already on login page
+                    if (!isPublicPage && !window.location.pathname.includes('login.html')) {
                         window.location.href = 'login.html?session=expired';
                     }
                 }
